@@ -1,0 +1,6 @@
+[features]
+intro_skip = true
+mod_warning_skip = true
+# Do not edit below this line: the bigger inventory needs both of these.
+inventory_grid = true
+popup_pages = true
