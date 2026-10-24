@@ -57,8 +57,11 @@ fn read_mods_copy() -> Option<String> {
         }
         let host = String::from_utf8_lossy(&buf[..n as usize]).into_owned();
         // host = <game>/Binaries/NMS.exe (separators may be / or \).
+        // Strip twice: exe name, then the Binaries dir itself.
         let bin_end = host.rfind(['/', '\\'])?;
-        let game = &host[..bin_end];
+        let binaries = &host[..bin_end];
+        let game_end = binaries.rfind(['/', '\\'])?;
+        let game = &binaries[..game_end];
         let sep = if host.contains('\\') { "\\" } else { "/" };
         let path = format!(
             "{}{}GAMEDATA{}MODS{}{}{}{}",
