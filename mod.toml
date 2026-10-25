@@ -2,7 +2,7 @@
 # Both must stay on for the grids to function, and the matching static
 # UI MBINs (8x3 popups, scaled slots/boxes, inventory pages) must ship
 # alongside.
-[plugin]
+[mod]
 id = "eu.savagecore.bigger_item_grids_fixes"
 version = "0.2.0"
 enabled = true
