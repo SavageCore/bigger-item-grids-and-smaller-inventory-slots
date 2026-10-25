@@ -1,17 +1,19 @@
 [center][size=5][b]Bigger Item Grids and Smaller Inventory Slots[/b][/size]
 Inventory increases from 5 rows to [b]7 rows[/b], technology from 3 to [b]4 rows[/b], and the
-Transfer/Craft popups from 8 items to [b]24 slots[/b] per page - plus optional intro
-logo and mod-warning skips[/center]
+Transfer/Craft popups from 8 items to [b]24 slots[/b] per page[/center]
 [b]What it does[/b]
 [list]
 [*][b]Inventory: [/b]Increase visible rows from 5 to [b]7[/b], Technology from 3 to [b]4[/b].[/*]
 [*][b]Transfer Items and Craft Product popups: [/b]Increase from 4 by 2 (8 items per page) to [b]8 by 3 (24 cards per page)[/b][/*]
-[*][b]Boot: [/b]Intro logos and mod-warning are skipped[/*]
 [/list]
 
-[b]Disabled intro skip or mod warning:[/b]
+[b]Requires:[/b] the [b]Nozavolochen Framework[/b] file (provides the host DLL).
 
-Edit the included [b]nms-tweaks.toml[/b] in the mod folder under [b]GAMEDATA/MODS[/b]. `inventory_grid` and `popup_pages` must be `true` for the bigger inventory to function.
+[b]Toggles:[/b]
+
+Edit the included [b]mod.toml[/b] in the mod folder under [b]GAMEDATA/MODS[/b]. `popup_pages` and `inventory_grid` must both be `true` for the bigger inventory to function.
+
+Part of the [b]Nozavolochen[/b] mod family (one shared host DLL, spec-driven mods - no closed-source loaders). Intro skip and mod-warning skip are separate mods.
 
 [b]Install[/b]
 
@@ -23,7 +25,7 @@ into the game folder.
 [b]Compatibility[/b]
 [list]
 [*]Modifies the popup, inventory page, slot and box UI files, plus
-pattern-scanned hooks for the grid, page size, intro skip and warning skip.
+pattern-scanned hooks for the grid and page size.
 Nothing else[/*]
 [*]Built for Cosmos v7.04 - a game update can shift the patterns, and the log
 will say so instead of misbehaving[/*]

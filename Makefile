@@ -10,7 +10,7 @@
 #                     GAMEDATA/MODS/) for Amethyst/Vortex
 #   make verify       sanity-check the built outputs
 #   make clean        remove build/ and dist/
-#   make loader       build the nms-tweaks proxy DLL (loader/dist/)
+#   make loader       build the Nozavolochen host DLL via the framework (dev testing)
 #   make rootzip      pack the root-install archive into dist/ (no rebuild)
 #   make assets       regenerate the Nexus page images (gallery + header)
 #
@@ -104,34 +104,34 @@ clean:
 assets: assets/bigger_inventory.jpg assets/generate.py
 	python3 assets/generate.py
 
-# The nms-tweaks proxy DLL (xinput9_1_0.dll + default toml) for
-# Binaries/. Built with the mingw cross toolchain on Linux; the same
-# binary runs on Windows and under Proton.
-LOADER_DIR := loader
-LOADER_DIST := $(LOADER_DIR)/dist
+# The Nozavolochen host DLL (xinput9_1_0.dll) is a separate required
+# download (the framework Nexus file); this mod ships only its mod
+# spec plus static UI. The loader target below is for local dev testing
+# only. Override the framework checkout location if needed:
+#   make FRAMEWORK_HOME=/path/to/nozavolochen/framework loader
+FRAMEWORK_HOME ?= /home/savagecore/Modding/NMS/nozavolochen/framework
+FRAMEWORK_DIST := $(FRAMEWORK_HOME)/loader/dist
+
+DLL := $(FRAMEWORK_DIST)/xinput9_1_0.dll
 
 loader:
-	@cd "$(LOADER_DIR)" && cargo build --target x86_64-pc-windows-gnu --release
-	@mkdir -p "$(LOADER_DIST)"
-	@cp "$(LOADER_DIR)/target/x86_64-pc-windows-gnu/release/xinput9_1_0.dll" "$(LOADER_DIST)/"
-	@echo "loader: $(LOADER_DIST)/xinput9_1_0.dll"
+	@$(MAKE) -C "$(FRAMEWORK_HOME)" loader
+	@echo "loader: $(DLL)"
 
 # Single install archive for Amethyst (default import, NOT Root Folder)
-# and Vortex. Layout follows Amethyst's deploy rules: a flat DLL maps to
-# the game Binaries, and the bare mod folder maps to GAMEDATA/MODS/.
+# and Vortex: the bare mod folder maps to GAMEDATA/MODS/. The host DLL
+# is NOT bundled; install the Nozavolochen Framework file (required
+# dependency) for Binaries/xinput9_1_0.dll.
 # (A Binaries/ subdir in the zip does NOT work: Amethyst deploys it as
 # Binaries/Binaries/, and a GAMEDATA/MODS prefix gets stripped and dumped
-# at the game root.) The toml ships inside the mod folder; the DLL reads
-# it beside itself first, then falls back to the MODS copy.
-# This replaces the standalone BootSkip DLL (both provide XINPUT9_1_0.dll
-# - do not run both).
+# at the game root.) The mod.toml ships inside the mod folder; the DLL
+# discovers it there at boot alongside the other installed mods.
 
-rootzip: verify loader
+rootzip: verify
 	@rm -rf "$(BUILD)/rootzip" && mkdir -p "$(BUILD)/rootzip/$(MOD_SET)"
-	@cp "$(LOADER_DIST)/xinput9_1_0.dll" "$(BUILD)/rootzip/"
-	@cp "$(LOADER_DIST)/nms-tweaks.toml" "$(BUILD)/rootzip/$(MOD_SET)/"
+	@cp mod.toml "$(BUILD)/rootzip/$(MOD_SET)/"
 	@cp -a "$(BUILD)/$(MOD_SET)/UI" "$(BUILD)/rootzip/$(MOD_SET)/"
 	@cp "$(BUILD)/$(MOD_SET)/mod.lua" "$(BUILD)/rootzip/$(MOD_SET)/"
-	@mkdir -p "$(DIST)" && rm -f "$(ROOTZIP)" && cd "$(BUILD)/rootzip" && zip -qr "$(shell pwd)/$(ROOTZIP)" xinput9_1_0.dll "$(MOD_SET)"
+	@mkdir -p "$(DIST)" && rm -f "$(ROOTZIP)" && cd "$(BUILD)/rootzip" && zip -qr "$(shell pwd)/$(ROOTZIP)" "$(MOD_SET)"
 	@echo "packed: $(ROOTZIP) (version $(VERSION))"
 	@unzip -l "$(ROOTZIP)" | tail -4
