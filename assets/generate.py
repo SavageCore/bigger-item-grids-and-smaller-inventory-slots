@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate the Nexus page header from the source screenshot.
 
-  assets/header-bigger-inventory-1300x372.jpg    (wide crop + title overlay, banner)
+  assets/header-1300x372.jpg    (wide crop + title overlay, banner)
 
 The source is the Exosuit screen with the scaled grids: 7 cargo rows and
 4 tech rows on the left, the exosuit on the right. The header is a band
@@ -19,7 +19,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "bigger_inventory.jpg")
-HDR = os.path.join(HERE, "header-bigger-inventory-1300x372.jpg")
+HDR = os.path.join(HERE, "header-1300x372.jpg")
 
 # In-game heading typeface, vendored (SIL OFL 1.1):
 # https://github.com/NMSCD/No-Mans-Sky-Universal-Font
