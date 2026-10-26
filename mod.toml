@@ -4,7 +4,7 @@
 # alongside.
 [mod]
 id = "eu.savagecore.bigger_item_grids_fixes"
-version = "0.2.0"
+version = "0.2.1"
 enabled = true
 
 [features]

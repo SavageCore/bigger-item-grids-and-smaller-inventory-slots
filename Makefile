@@ -20,7 +20,7 @@
 AMUMSS_HOME ?= $(HOME)/AMUMSS
 AMUMSS_LINUX ?= $(HOME)/Git/AMUMSS/linux
 
-VERSION      := 0.2.0
+VERSION      := 0.2.1
 
 MOD_SET      := Bigger Item Grids and Smaller Inventory Slots
 
