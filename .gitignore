@@ -2,3 +2,6 @@ build/
 dist/
 __pycache__/
 assets/header-*.jpg
+# Game binaries are build outputs, never sources. The patch recipe lives
+# in src/patches.tsv and the full-file grids in src/mxml.
+*.MBIN

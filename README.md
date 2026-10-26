@@ -45,8 +45,11 @@ After launch, `Binaries/nozavolochen.log` is created to help with debugging.
 
 ## Compatibility
 
-Static files: the popup, inventory page, slot and box UI MBINs listed in
-`src/mod.lua.in`.
+Static files: the popup, inventory page, slot and box UI MBINs named
+in `src/mod.lua.in`. None of them are stored in this repo: all 19
+ship whole as MXML text in `src/mxml` (see `SOURCES` there for
+provenance) and compile to MBIN at build time. Every `make release`
+rebuilds all 19 outputs from those sources.
 
 Runtime: pattern-scanned hooks against the running NMS.exe, built for
 Cosmos v7.04. A game update can shift the patterns; this will be logged
@@ -79,4 +82,6 @@ The mod version is `VERSION` in the `Makefile`. The game version the
 script targets is `GameVersion` in `src/mod.lua.in`; the mod spec
 pins its patterns to the same build. When No Man's Sky updates, check
 `nozavolochen.log` first: any `NOT APPLIED` line names the patch whose
-patterns drifted.
+patterns drifted. If the update also changed the vanilla UI files, re-derive the
+affected files in `src/mxml` from the new vanilla MBINs (decompile
+both, diff, store the new mod MXML) and rebuild.

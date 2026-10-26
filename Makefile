@@ -1,8 +1,11 @@
 # Bigger Item Grids and Smaller Inventory Slots
-# Builds the FOMOD installer with the AMUMSS Linux port.
+# Builds the loose-folder mod with the AMUMSS Linux port.
 #
-# What it does: ships modified UI MBINs that enlarge the card grid on the
-# Transfer Items and Craft Product popups, and shrink the inventory slot icons.
+# What it does: patches the vanilla UI MBINs to enlarge the card grid on
+# the Transfer Items and Craft Product popups, and ships smaller
+# inventory slot and box templates. No game binaries live in this repo:
+# all 19 UI files ship whole as MXML text in src/mxml, compiled to
+# MBIN at build time.
 #
 # Usage:
 #   make release      clean rebuild + verify + pack dist/ zip (default)
@@ -24,13 +27,12 @@ VERSION      := 0.2.1
 
 MOD_SET      := Bigger Item Grids and Smaller Inventory Slots
 
-SRC_TEMPLATE := src/mod.lua.in
+SRC_SCRIPT   := src/mod.lua.in
+SRC_MXML_DIR := src/mxml
 
 BUILD := build
 DIST  := dist
 STAMP := $(BUILD)/.built
-
-FILES_DIR := files
 
 RENDERED := $(BUILD)/mod.lua
 
@@ -46,32 +48,21 @@ ROOTZIP := $(DIST)/$(MOD_SET).zip
 release: clean build verify rootzip
 	@echo "release: $(ROOTZIP) (version $(VERSION))"
 
-$(BUILD)/mod.lua: $(SRC_TEMPLATE)
+# The script needs no rendering; stage a copy so the build never
+# reads straight from src.
+$(RENDERED): $(SRC_SCRIPT)
 	@mkdir -p "$(BUILD)"
-	@cp "$(SRC_TEMPLATE)" "$@"
+	@cp "$(SRC_SCRIPT)" "$(RENDERED)"
 
 build: $(RENDERED)
 	@test -d "$(AMUMSS_HOME)/MODBUILDER" || (echo "ERROR: no AMUMSS install at $(AMUMSS_HOME)" >&2; exit 1)
 	@test -x "$(AMUMSS_HOME)/MODBUILDER/MBINCompiler-linux" || (echo "ERROR: MBINCompiler-linux missing" >&2; exit 1)
 	@rm -rf "$(AMUMSS_HOME)/MODBUILDER/MOD" && mkdir -p "$(AMUMSS_HOME)/MODBUILDER/MOD"
-	@rm -rf "$(BUILD)/stage" && mkdir -p "$(BUILD)/stage/mbin"
-	@if [ -d "$(FILES_DIR)" ]; then \
-	  cp -a "$(FILES_DIR)/." "$(BUILD)/stage/mbin/"; \
-	  cd "$(BUILD)/stage/mbin" && find . -name '*.MBIN' -print0 | while IFS= read -r -d '' f; do \
-	    "$(AMUMSS_HOME)/MODBUILDER/MBINCompiler-linux" "$$f" >/dev/null 2>&1 || echo "WARN: failed MBIN->MXML $$f" >&2; \
-	  done; \
-	  find . -name '*.MXML' -print0 | while IFS= read -r -d '' f; do \
-	    "$(AMUMSS_HOME)/MODBUILDER/MBINCompiler-linux" "$$f" >/dev/null 2>&1 || echo "WARN: failed MXML->MBIN $$f" >&2; \
-	    rm -f "$$f"; \
-	  done; \
-	fi
 	@if [ -d "$(AMUMSS_HOME)/ModScript" ]; then mv "$(AMUMSS_HOME)/ModScript" "$(AMUMSS_HOME)/ModScript.makebak"; trap 'rm -rf "$(AMUMSS_HOME)/ModScript"; mv "$(AMUMSS_HOME)/ModScript.makebak" "$(AMUMSS_HOME)/ModScript"' EXIT; fi
 	@mkdir -p "$(AMUMSS_HOME)/ModScript"
 	@cp "$(RENDERED)" "$(AMUMSS_HOME)/ModScript/mod.lua"
-	@cd "$(BUILD)/stage/mbin" && find . -name '*.MBIN' -print0 | while IFS= read -r -d '' f; do \
-	  mkdir -p "$(AMUMSS_HOME)/ModScript/$$(dirname "$$f")"; \
-	  cp "$$f" "$(AMUMSS_HOME)/ModScript/$$f"; \
-	done
+	@mkdir -p "$(AMUMSS_HOME)/ModScript/MXML"
+	@cp "$(SRC_MXML_DIR)"/*.MXML "$(AMUMSS_HOME)/ModScript/MXML/"
 	@rm -rf "$(AMUMSS_HOME)/CreatedMODS/$(MOD_SET)"
 	@AMUMSS_HOME="$(AMUMSS_HOME)" "$(AMUMSS_LINUX)/buildmod.sh" --run-pipeline
 	@rm -rf "$(AMUMSS_HOME)/ModScript"
@@ -84,15 +75,10 @@ build: $(RENDERED)
 
 verify: build
 	@set -e; \
-	if [ ! -d "$(BUILD)/$(MOD_SET)" ]; then echo "MISSING build output" >&2; exit 1; fi; \
-	for f in \
-	  "UI/POPUP_INVENTORY.MBIN" \
-	  "UI/POPUP_TRANSFER.MBIN" \
-	  "UI/POPUP_BUILD.MBIN" \
-	  "UI/INVENTORYPAGE.MBIN"; do \
-	  if [ ! -f "$(BUILD)/$(MOD_SET)/$$f" ]; then echo "MISSING $$f" >&2; exit 1; fi; \
-	done; \
-	echo "verify: OK"
+	if [ ! -d "$(BUILD)/$(MOD_SET)" ]; then echo "MISSING build output" >&2; exit 1; fi
+	@python3 src/verify_build.py --build "$(BUILD)" --mod-set "$(MOD_SET)" \
+		--mxml "$(SRC_MXML_DIR)" \
+		--mbincompiler "$(AMUMSS_HOME)/MODBUILDER/MBINCompiler-linux"
 
 clean:
 	rm -rf "$(BUILD)" "$(DIST)"

@@ -1,0 +1,37 @@
+# Where each MXML source in this directory came from.
+#
+# The two grids are structural forks of vanilla files: compare against the
+# vanilla file at the same UI/ path to see the change.
+#
+# The rest are new files the mod adds under UI/BIGGERITEMGRIDS. Each one
+# started as the vanilla file in the middle column, with small value
+# changes on top (slot and box sizes, template references). They are
+# stored whole because the AMUMSS pipeline cannot apply value patches
+# while creating a new file - a new file's content must be complete.
+#
+# All files below were decompiled from the mod's previous binary
+# sources with the repo's MBINCompiler-linux, and round-trip
+# byte-identically (MXML -> MBIN -> MXML). To re-derive after a game
+# update: decompile the new vanilla file and the new mod file, diff
+# them, and store the new mod MXML here.
+#
+# file                          derived from vanilla file
+INVENTORYPAGE.MXML              UI/INVENTORYPAGE.MBIN (patched values, same path)
+POPUP_BUILD.MXML                UI/POPUP_BUILD.MBIN (patched values, same path)
+POPUP_INVENTORY.MXML            UI/POPUP_INVENTORY.MBIN (structural fork)
+POPUP_TRANSFER.MXML             UI/POPUP_TRANSFER.MBIN (patched values, same path)
+ROCKETLOCKERPAGE.MXML           UI/ROCKETLOCKERPAGE.MBIN (patched values, same path)
+SWAPPAGE.MXML                   UI/SWAPPAGE.MBIN (structural fork)
+POPUP_BUILD_POPUPTABFRAME.MXML  UI/COMPONENTS/POPUPTABFRAME.MBIN
+BOXCOMPARE.MXML                 UI/COMPONENTS/INVENTORY/SQU_INV_BOXCOMPARE.MBIN
+BOXREGULAR.MXML                 UI/COMPONENTS/INVENTORY/SQU_INV_BOXREGULAR.MBIN
+BOXTECH.MXML                    UI/COMPONENTS/INVENTORY/SQU_INV_BOXTECH.MBIN
+BOXTECH_LARGE.MXML              UI/COMPONENTS/INVENTORY/SQU_INV_BOXTECH_LARGE.MBIN
+SLOT.MXML                       UI/COMPONENTS/INVENTORY/SQU_INV_SLOT_LARGE.MBIN
+SLOT_SMALL.MXML                 UI/COMPONENTS/INVENTORY/SQU_INV_SLOT_SMALL.MBIN
+SLOTFAKE.MXML                   UI/COMPONENTS/INVENTORY/SQU_SLOTFAKELARGE.MBIN
+SLOTFAKE_SMALL.MXML             UI/COMPONENTS/INVENTORY/SQU_SLOTFAKESMALL.MBIN
+SQU_SLOT.MXML                   UI/COMPONENTS/INVENTORY/SQU_SLOT.MBIN
+SQU_SLOT_SMALL.MXML             UI/COMPONENTS/INVENTORY/SQU_SLOT.MBIN
+SQU_SLOT_ITEM.MXML              UI/COMPONENTS/INVENTORY/SQU_SLOT_ITEM.MBIN
+SQU_SLOT_ITEM_SMALL.MXML        UI/COMPONENTS/INVENTORY/SQU_SLOT_ITEM.MBIN
