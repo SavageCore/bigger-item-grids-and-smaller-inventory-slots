@@ -1,6 +1,6 @@
 # Bigger Item Grids and Smaller Inventory Slots
 
-See more items on screen in the inventory and Crafting/Transfer popups.
+See more slots on screen in the inventory and Crafting/Transfer popups.
 
 A [Nozavolochen](https://github.com/Nozavolochen/framework) mod:
 the runtime patches are declared in `mod.toml` and applied by the
@@ -13,14 +13,14 @@ Increase visible rows from 5 to **7**, Technology from
 3 to **4**.
 
 **Transfer Items and Craft Product popups:** Increases pop-up from
-4 by 2 (8 items per page) to **8 by 3 (24 cards per page)**.
+4 by 2 (8 slots per page) to **8 by 3 (24 slots per page)**.
 
 > [!NOTE]
 > `popup_pages` and `inventory_grid` must both be `true` in the
 > included `mod.toml` for the bigger inventory to function.
 > Intro skip and mod-warning skip are separate Nozavolochen mods.
 
-![Craft Product popup with the 8 by 3 card grid](assets/bigger_crafting.jpg)
+![Craft Product popup with the 8 by 3 slot grid](assets/bigger_crafting.jpg)
 
 ![Cargo and technology grids with smaller slots](assets/bigger_inventory.jpg)
 

@@ -26,7 +26,7 @@ HDR = os.path.join(HERE, "header-1300x372.jpg")
 FONT = os.path.join(HERE, "fonts", "GeosansLight-NMS.ttf")
 
 TITLE = ["BIGGER ITEM GRIDS", "SMALLER INVENTORY SLOTS"]
-SUBTITLE = "7 ROWS OF 10  \u2022  24 ITEMS PER PAGE"
+SUBTITLE = "7 ROWS OF 10  \u2022  24 SLOTS PER PAGE"
 
 # Header crop, in source pixels. The width is what makes the inventory land
 # right of the title, so it is derived from the source rather than fixed.
