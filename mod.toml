@@ -1,25 +1,231 @@
 # bigger_item_grids_fixes: runtime halves of the bigger-grids mod.
-# Both must stay on for the grids to function, and the matching static
-# UI MBINs (8x3 popups, scaled slots/boxes, inventory pages) must ship
-# alongside.
+# Both halves work together; the overlay toggles below switch each
+# half's code, and the matching static UI MBINs (8x3 popups, scaled
+# slots/boxes, inventory pages) must ship alongside.
 [mod]
 id = "eu.savagecore.bigger_item_grids_fixes"
 version = "0.2.1"
+label = "Bigger Item Grids and Smaller Inventory Slots"
+description = "See more slots on screen in the inventory and Crafting/Transfer popups."
 enabled = true
 
-[features]
-popup_pages = true
-inventory_grid = true
+[[mod.text]]
+lang = "nl"
+description = "Zie meer slots op het scherm in de inventaris en de Crafting- en Transfer-pop-ups."
+
+[[mod.text]]
+lang = "de"
+description = "Zeigt mehr Slots im Inventar und in den Crafting- und Transfer-Pop-ups an."
+
+[[mod.text]]
+lang = "fr"
+description = "Affiche plus de slots à l'écran dans l'inventaire et les popups de fabrication et de transfert."
+
+[[mod.text]]
+lang = "it"
+description = "Mostra più slot sullo schermo nell'inventario e nei popup di fabbricazione e trasferimento."
+
+[[mod.text]]
+lang = "es"
+description = "Muestra más slots en pantalla en el inventario y en las ventanas de fabricación y transferencia."
+
+[[mod.text]]
+lang = "es-419"
+description = "Muestra más slots en pantalla en el inventario y en las ventanas de fabricación y transferencia."
+
+[[mod.text]]
+lang = "ru"
+description = "Показывает больше слотов на экране в инвентаре и всплывающих окнах создания и передачи."
+
+[[mod.text]]
+lang = "pl"
+description = "Pokazuje więcej slotów na ekranie w ekwipunku oraz w oknach tworzenia i przenoszenia."
+
+[[mod.text]]
+lang = "pt"
+description = "Mostra mais slots no ecrã no inventário e nos popups de fabrico e transferência."
+
+[[mod.text]]
+lang = "pt-BR"
+description = "Mostra mais slots na tela no inventário e nos popups de criação e transferência."
+
+[[mod.text]]
+lang = "ja"
+description = "インベントリと作成/転送ポップアップで、画面により多くのスロットを表示します。"
+
+[[mod.text]]
+lang = "zh"
+description = "在物品栏及制造/传送弹窗中于屏幕上显示更多槽位。"
+
+[[mod.text]]
+lang = "zh-Hant"
+description = "在物品欄及製造/傳送彈窗中於螢幕上顯示更多槽位。"
+
+[[mod.text]]
+lang = "ko"
+description = "인벤토리와 제작/전송 팝업에서 화면에 더 많은 슬롯을 표시합니다."
+
+[[setting]]
+id = "popup-pages"
+kind = "bool"
+label = "Popup pages"
+description = "24 slots per page. Works together with the grid below."
+default = true
+
+[[setting.text]]
+lang = "nl"
+label = "Pop-uppagina's"
+description = "24 slots per pagina. Werkt samen met het grid hieronder."
+
+[[setting.text]]
+lang = "de"
+label = "Popup-Seiten"
+description = "24 Slots pro Seite. Funktioniert zusammen mit dem Raster unten."
+
+[[setting.text]]
+lang = "fr"
+label = "Pages popup"
+description = "24 slots par page. Fonctionne avec la grille ci-dessous."
+
+[[setting.text]]
+lang = "it"
+label = "Pagine popup"
+description = "24 slot per pagina. Funziona con la griglia qui sotto."
+
+[[setting.text]]
+lang = "es"
+label = "Páginas popup"
+description = "24 slots por página. Funciona con la cuadrícula de abajo."
+
+[[setting.text]]
+lang = "es-419"
+label = "Páginas popup"
+description = "24 slots por página. Funciona con la cuadrícula de abajo."
+
+[[setting.text]]
+lang = "ru"
+label = "Страницы попапов"
+description = "24 слота на странице. Работает вместе с сеткой ниже."
+
+[[setting.text]]
+lang = "pl"
+label = "Strony popupów"
+description = "24 sloty na stronę. Współpracuje z siatką poniżej."
+
+[[setting.text]]
+lang = "pt"
+label = "Páginas popup"
+description = "24 slots por página. Funciona com a grelha abaixo."
+
+[[setting.text]]
+lang = "pt-BR"
+label = "Páginas popup"
+description = "24 slots por página. Funciona com a grade abaixo."
+
+[[setting.text]]
+lang = "ja"
+label = "ポップアップページ"
+description = "1ページあたり24スロット。下のグリッドと連動します。"
+
+[[setting.text]]
+lang = "zh"
+label = "弹窗页面"
+description = "每页24个槽位。与下方网格配合使用。"
+
+[[setting.text]]
+lang = "zh-Hant"
+label = "彈窗頁面"
+description = "每頁24個槽位。與下方網格配合使用。"
+
+[[setting.text]]
+lang = "ko"
+label = "팝업 페이지"
+description = "페이지당 24개 슬롯. 아래 그리드와 함께 작동합니다."
+
+[[setting]]
+id = "inventory-grid"
+kind = "bool"
+label = "Inventory grid"
+description = "Small slots, 7 cargo and 4 tech rows. Works with the pages above."
+default = true
+
+[[setting.text]]
+lang = "nl"
+label = "Inventarisrooster"
+description = "Kleine slots, 7 vracht- en 4 techrijen. Werkt samen met de pagina's hierboven."
+
+[[setting.text]]
+lang = "de"
+label = "Inventar-Raster"
+description = "Kleine Slots, 7 Fracht- und 4 Tech-Reihen. Arbeitet mit den Seiten oben zusammen."
+
+[[setting.text]]
+lang = "fr"
+label = "Grille d'inventaire"
+description = "Petits slots, 7 rangées de soute et 4 rangées tech. Fonctionne avec les pages ci-dessus."
+
+[[setting.text]]
+lang = "it"
+label = "Griglia inventario"
+description = "Slot piccoli, 7 righe carico e 4 righe tech. Funziona con le pagine qui sopra."
+
+[[setting.text]]
+lang = "es"
+label = "Cuadrícula de inventario"
+description = "Slots pequeños, 7 filas de carga y 4 filas de tecnología. Funciona con las páginas de arriba."
+
+[[setting.text]]
+lang = "es-419"
+label = "Cuadrícula de inventario"
+description = "Slots pequeños, 7 filas de carga y 4 filas de tecnología. Funciona con las páginas de arriba."
+
+[[setting.text]]
+lang = "ru"
+label = "Сетка инвентаря"
+description = "Маленькие слоты, 7 рядов груза и 4 ряда технологий. Работает со страницами выше."
+
+[[setting.text]]
+lang = "pl"
+label = "Siatka ekwipunku"
+description = "Małe sloty, 7 rzędów ładunku i 4 rzędy tech. Współpracuje ze stronami powyżej."
+
+[[setting.text]]
+lang = "pt"
+label = "Grelha de inventário"
+description = "Slots pequenos, 7 filas de carga e 4 filas tech. Funciona com as páginas acima."
+
+[[setting.text]]
+lang = "pt-BR"
+label = "Grade de inventário"
+description = "Slots pequenos, 7 fileiras de carga e 4 fileiras tech. Funciona com as páginas acima."
+
+[[setting.text]]
+lang = "ja"
+label = "インベントリグリッド"
+description = "小さなスロット、カーゴ7列とテック4列。上のページと連動します。"
+
+[[setting.text]]
+lang = "zh"
+label = "物品栏网格"
+description = "小型槽位，7排货舱和4排科技。与上方页面配合使用。"
+
+[[setting.text]]
+lang = "zh-Hant"
+label = "物品欄網格"
+description = "小型槽位，7排貨艙和4排科技。與上方頁面配合使用。"
+
+[[setting.text]]
+lang = "ko"
+label = "인벤토리 그리드"
+description = "작은 슬롯, 화물 7행과 기술 4행. 위 페이지와 함께 작동합니다."
 
 [[patch]]
 id = "popup-pages"
-feature = "popup_pages"
 op = "page-size-override"
 items = 24
 
 [[patch]]
 id = "inventory-grid"
-feature = "inventory_grid"
 op = "detour-with-arg-overrides"
 pattern = "48 85 d2 0f 84 ?? ?? ?? ?? 48 8b c4 4c 89 48 ?? 4c 89 40"
 slot_width = 63

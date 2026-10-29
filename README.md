@@ -30,7 +30,7 @@ Requires the **Nozavolochen Framework** file (required dependency,
 provides `Binaries/xinput9_1_0.dll`).
 
 Install `dist/Bigger Item Grids and Smaller Inventory Slots.zip` as a
-**Root Folder** mod ([Amethyst](https://github.com/ChrisDKN/Amethyst-Mod-Manager)) or copy the contents into the game folder.
+normal mod into `GAMEDATA/MODS` ([Amethyst](https://github.com/ChrisDKN/Amethyst-Mod-Manager)) or copy the mod folder into `GAMEDATA/MODS`.
 
 You should then have:
 
