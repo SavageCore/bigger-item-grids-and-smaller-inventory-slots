@@ -4,7 +4,7 @@
 # slots/boxes, inventory pages) must ship alongside.
 [mod]
 id = "eu.savagecore.bigger_item_grids_fixes"
-version = "0.2.1"
+version = "0.3.0"
 label = "Bigger Item Grids and Smaller Inventory Slots"
 description = "See more slots on screen in the inventory and Crafting/Transfer popups."
 enabled = true
