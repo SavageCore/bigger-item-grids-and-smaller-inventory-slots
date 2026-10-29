@@ -52,7 +52,7 @@ provenance) and compile to MBIN at build time. Every `make release`
 rebuilds all 19 outputs from those sources.
 
 Runtime: pattern-scanned hooks against the running NMS.exe, built for
-Cosmos v7.06. A game update can shift the patterns; this will be logged
+Forsaken. A game update can shift the patterns; this will be logged
 and functionality disabled to prevent issues.
 
 ## Build (on Linux)

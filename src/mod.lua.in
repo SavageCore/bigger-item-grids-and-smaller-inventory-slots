@@ -6,7 +6,7 @@
 -- here the way they are for globals and tables.
 local ModName     = "Bigger Item Grids and Smaller Inventory Slots"
 local ModAuthor   = "SavageCore"
-local GameVersion = "v7.04"
+local GameVersion = "v7.10"
 
 NMS_MOD_DEFINITION_CONTAINER = {
     ["MOD_FILENAME"]    = ModName..".pak",

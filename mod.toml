@@ -223,6 +223,7 @@ description = "작은 슬롯, 화물 7행과 기술 4행. 위 페이지와 함�
 id = "popup-pages"
 op = "page-size-override"
 items = 24
+xref_policy = "any-outer-with-scale"
 
 [[patch]]
 id = "inventory-grid"
